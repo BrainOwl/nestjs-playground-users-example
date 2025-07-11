@@ -22,7 +22,7 @@ export class UsersService {
     return this.prisma.user.update({ data: updateUserDto, where: { id } });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(id: string) {
+    return this.prisma.user.delete({ where: { id } });
   }
 }
