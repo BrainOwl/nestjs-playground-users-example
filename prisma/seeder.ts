@@ -1,6 +1,6 @@
-import { PrismaClient } from '../generated/prisma';
+import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+const prisma: PrismaClient = new PrismaClient();
 
 async function main() {
   const [john, jane, organization] = await prisma.$transaction(
@@ -44,11 +44,11 @@ async function main() {
 }
 
 main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  .finally(async () => {
+  .then(async () => {
     await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
   });
