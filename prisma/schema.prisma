@@ -19,7 +19,7 @@ model User {
   email String @unique
   telephone String?
   firstName String
-  lastNmae String?
+  lastName String?
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
   password String
