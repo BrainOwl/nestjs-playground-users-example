@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:17.5 # Latest stable production-ready PostgreSQL image
+    restart: always
+    environment:
+      - POSTGRES_USER=brainowl
+      - POSTGRES_PASSWORD=brainowl
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - '5433:5432' # Host port mapped directly to container's default PostgreSQL port
+
+volumes:
+  postgres:
