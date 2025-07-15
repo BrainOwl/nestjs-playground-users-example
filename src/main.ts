@@ -9,6 +9,15 @@ async function bootstrap() {
     .setTitle('User Authentication Example API')
     .setDescription('The description of the API')
     .setVersion('1')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      in: 'header',
+      name: 'Authorization',
+      description: 'Enter your bearer token',
+    })
+    .addSecurityRequirements('bearer')
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
